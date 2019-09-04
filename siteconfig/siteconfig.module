@@ -1,0 +1,65 @@
+<?php
+
+/**
+ * @file
+ * Contains siteconfig.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+
+/**
+ * Implements hook_help().
+ */
+function siteconfig_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the siteconfig module.
+    case 'help.page.siteconfig':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('My Awesome Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function siteconfig_theme() {
+  return [
+    'siteconfig' => [
+      'render element' => 'children',
+    ],
+  ];
+}
+
+function siteconfig_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id = 'system-site-information-settings'){
+    $siteapikey = '';
+    $siteapikey = \Drupal::config('siteconfig.settings')
+      ->get('siteapikey');
+    $form['site_information']['apikey']=[
+      '#type' => 'textfield',
+      '#title' => 'Enter your site api key',
+      '#default_value' => $siteapikey,
+    ];
+    $form['actions']['submit']['#value']=t('Update configuration');
+    $form['#submit'][]='submitForm';
+    // dpm($form);
+  }
+}
+
+function submitForm(&$form, FormStateInterface $form_state) {
+  if(!empty($form['site_information']['apikey']['#value']) && $form['site_information']['apikey']['#value'] != \Drupal::config('siteconfig.settings') ->get('siteapikey') ) {
+
+    \Drupal::configFactory()->getEditable('siteconfig.settings')
+      ->set('siteapikey', $form['site_information']['apikey']['#value'])
+      ->save();
+
+      drupal_set_message(t('Site API Key has been saved with th value' . $form['site_information']['apikey']['#value']), 'status');
+
+  }
+}

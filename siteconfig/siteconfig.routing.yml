@@ -1,0 +1,14 @@
+siteconfig.default_controller_hello:
+  path: '/page_json/{siteapi}/{node_id}'
+  defaults:
+    _controller: '\Drupal\siteconfig\Controller\DefaultController::hello'
+    _title: 'siteapi'
+  requirements:
+    _permission: 'access content'
+siteconfig.default_controller_siteapi:
+  path: '/siteconfig/siteapi'
+  defaults:
+    _controller: '\Drupal\siteconfig\Controller\DefaultController::siteapi'
+    _title: 'empty'
+  requirements:
+    _permission: 'access content'

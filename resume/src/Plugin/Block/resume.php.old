@@ -1,0 +1,41 @@
+<?php
+namespace Drupal\resume\Plugin\Block;
+
+use Drupal\Core\Block\BlockBase;
+// use Drupal\Core\Form\FormStateInterface;
+use Drupal\resume\Controller\ResumeController;
+
+/**
+ * Provides a 'resume' block.
+ *
+ * @Block(
+ *   id = "resume",
+ *   admin_label = @Translation("Resume block"),
+ *   category = @Translation("Custom resume block example")
+ * )
+ */
+class resume extends BlockBase {
+  /**
+   * {@inheritdoc}
+   */
+
+  public function build() {
+    // return array(
+    //   '#type' => 'markup',
+    //   '#markup' => 'This block list the resume form.',
+    // );
+
+    // $form = \Drupal::formBuilder()->getForm('Drupal\resume\Form\ResumeForm');
+    // return $form;
+    // $ResumeController = new ResumeController;
+    // $formdetails = $ResumeController->example();
+    // return $formdetails;
+
+    $controller_variable = new ResumeController;
+    print_r($controller_variable);
+    // $rendering_in_block = $controller_variable->example();
+    // return $rendering_in_block;
+
+  }
+
+}

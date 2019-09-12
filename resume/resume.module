@@ -1,0 +1,25 @@
+<?php
+/*
+ * @file
+ * Contains \Drupal\test_twig\Controller\TestTwigController.
+*/
+ 
+namespace Drupal\resume\Controller;
+ 
+use Drupal\Core\Controller\ControllerBase;
+ 
+class ResumeController extends ControllerBase {
+
+	public function build($existing, $type, $theme, $path) {
+    $config = $this->getConfiguration();
+    $getDetails = $this->DatabaseResult();
+
+    $data = $getDetails;
+
+    return array (
+      '#theme' => 'octo_custom',
+      '#title' => $data,
+      '#test_var' => $this->t('Test Value'),
+    );
+	}
+}

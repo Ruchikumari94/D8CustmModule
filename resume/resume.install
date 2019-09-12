@@ -1,0 +1,64 @@
+<?php
+function resume_schema() {
+  $schema['resume'] = array(
+    'description' => 'Stores value in custom table',
+    'fields' => array(
+      'cid' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'Primary Key: Unique id for candidate',
+      ),
+      'candidate_name' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Candidate name of a person.',
+      ),
+      'candidate_mail' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Store email of a person',
+      ),
+      'candidate_number' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Store number of a person',
+      ),
+      'candidate_dob' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Store dob of a person',
+      ),
+      'candidate_gender' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Store gender of a person',
+      ),
+      'candidate_confirmation' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Store confirmation of a person',
+      ),
+      'candidate_copy' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'Store confirmation candidate copy of a person'
+      ),
+    ),
+    'primary key' => array('cid'),
+  );
+  return $schema;
+}

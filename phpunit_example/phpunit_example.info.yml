@@ -1,0 +1,4 @@
+name: Phpunit Example
+description: Phpunit tessting example.
+type: module
+core: 8.x
